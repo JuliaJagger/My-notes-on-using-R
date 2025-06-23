@@ -34,10 +34,9 @@ h4 {
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com> or alternatively [click here](http://rmarkdown.rstudio.com). Both options do exactly the same thing, but I'm using this .rmd file to keep all my notes in one place! 😊
 
-
 ## Required packages
 Note that I have turned of the output to the packages as I don't see the value in viewing that part.
-```{r, echo=TRUE, results='hide'}
+```{r Load packages, echo=TRUE, results='hide'}
 install.packages("tidyverse")
 library(tidyverse)
 install.packages(("palmerpenguins"))
@@ -49,14 +48,14 @@ library(palmerpenguins)
 When plotting with ggplot2, the line will always begin with ggplot(data=<<dataframe>>). This tells ggplot2 which data frame
 to use. If you run it as is, it'll just bring up an empty plot:
 
-```{r}
+```{r Empty plot}
 ggplot(data=penguins)
 ```
 
 Next plus sign adds layers to a plot. Firstly we add geom_point to tell R to use points to represent the data (scatter plot).
 Plus sign must be at the end of a line if you wish to break it up in this way. The + represents a new layer in the plot.
 
-```{r}
+```{r Initial basic plot}
 ggplot(data=penguins)+
   geom_point(mapping=aes(x=flipper_length_mm, y=body_mass_g))
 ```
@@ -64,50 +63,50 @@ ggplot(data=penguins)+
 Mapping means matching up a specific variable in your dataset with a specific aesthetic.
 
 Refine mapping to add a third variable (species) in different colours:
-```{r}
+```{r Add colour to plot}
 ggplot(data=penguins)+
   geom_point(mapping=aes(x=flipper_length_mm, y=body_mass_g, colour=species))
 ```
 
 Refine mapping further to add a third variable (species) in different shapes:
-```{r}
+```{r Add shapes to plot}
 ggplot(data=penguins)+
   geom_point(mapping=aes(x=flipper_length_mm, y=body_mass_g, shape=species))
 ```
 
 Refine mapping to add a third variable (species) in different shapes AND colours AND sizes:
-```{r}
+```{r Add shapes and colours and sizes to plot}
 ggplot(data=penguins)+
   geom_point(mapping=aes(x=flipper_length_mm, y=body_mass_g, shape=species, colour=species, size=species))
 ```
 
 Transparency of the points can be edited by using alpha aesthetic. This works well when you've got a dense plot with lots of data points.
-```{r}
+```{r Add transparency to plot}
 ggplot(data=penguins)+
   geom_point(mapping=aes(x=flipper_length_mm, y=body_mass_g, alpha=species))
 ```
 
 Writing code outside of the aes function changes the appearance of the plot overall (and ignoring specific variables).
-```{r}
+```{r editing entire plot colour}
 ggplot(data=penguins)+
   geom_point(mapping=aes(x=flipper_length_mm, y=body_mass_g, alpha=species), colour="green")
 ```
 
 Three aesthetic attributes in ggplot2 are colour, size, and shape
-```{r}
+```{r Colour Size and Shape}
 ggplot(data=penguins)+
   geom_point(mapping=aes(x=flipper_length_mm, y=body_mass_g, colour=species, size=body_mass_g, shape=species))
 ```
 
-Looking at different geoms - the geometrical object used to reprensent your data. geom_point, geom_bar, geom_line etc
-```{r}
+Looking at different geoms - the geometrical object used to represent your data. geom_point, geom_bar, geom_line etc
+```{r using geom_smooth}
 ggplot(data=penguins)+
   geom_smooth(mapping=aes(x=flipper_length_mm, y=body_mass_g, colour=species, linetype=species))
 ```
 
 geom_jitter function creates a scatter plot and then adds a small amount of random noise to each point in the lot. It helps deal with over-plotting (when data points in a plot overlap with each other).
 
-```{r}
+```{r using geom_jitter}
 ggplot(data=penguins)+
   geom_smooth(mapping=aes(x=flipper_length_mm, y=body_mass_g))+
   geom_jitter(mapping=aes(x=flipper_length_mm, y=body_mass_g))
@@ -116,7 +115,7 @@ ggplot(data=penguins)+
 
 Working with the diamond dataset. Here the outline of each bar has been coloured. In addition, the labels at the bottom have been angled. If the text was longer, this angling makes them easier to read:
 
-```{r}
+```{r angling text}
 ggplot(data=diamonds)+
   geom_bar(mapping=aes(x=cut, colour=cut))+
   theme(axis.text.x = element_text(angle = 45))
@@ -124,7 +123,7 @@ ggplot(data=diamonds)+
 
 Using the fill function colours the whole bar, not just the outline:
 
-```{r}
+```{r fill property}
 ggplot(data=diamonds)+
   geom_bar(mapping=aes(x=cut, fill=cut))+
   theme(axis.text.x = element_text(angle = 45))
@@ -132,7 +131,7 @@ ggplot(data=diamonds)+
 
 If fill is mapped to a new variable, geom_bar displays a stacked bar chart:
 
-```{r}
+```{r stacked bar charts}
 ggplot(data=diamonds)+
   geom_bar(mapping=aes(x=cut, fill=clarity))
 ```
@@ -141,7 +140,7 @@ ggplot(data=diamonds)+
 
 Labels are information that is shared outside of the plot range, annotations are shared inside it.
 
-```{r}
+```{r adding a title}
 ggplot(data=penguins)+
   geom_point(mapping=aes(x=flipper_length_mm,y=body_mass_g,colour=species))+
   labs(title="Palmer Penguins: Body Mass vs. Flipper Length")
@@ -150,7 +149,7 @@ Note that title is automatically at the top of the plot.
 
 As well as title, you can have subtitles and captions whose default positions are shown below
 
-```{r}
+```{r adding a subtitle}
 ggplot(data=penguins)+
   geom_point(mapping=aes(x=flipper_length_mm,y=body_mass_g,colour=species))+
   labs(title="Palmer Penguins: Body Mass vs. Flipper Length",
@@ -159,7 +158,7 @@ ggplot(data=penguins)+
 ```
 
 Finally, you can angle and format text as required:
-```{r}
+```{r adding annotations}
 ggplot(data=penguins)+
   geom_point(mapping=aes(x=flipper_length_mm,y=body_mass_g,colour=species))+
   labs(title="Palmer Penguins: Body Mass vs. Flipper Length",
@@ -175,19 +174,19 @@ ggplot(data=penguins)+
 Assign a plot to a variable in the usual way (with <-). To view the plot after this, simply type the name of the variable (in this case p).
 
 
-```{r}
+```{r storing a plot to a variable}
 p <- ggplot(data=penguins)+
   geom_point(mapping=aes(x=flipper_length_mm,y=body_mass_g,colour=species))+
   labs(title="Palmer Penguins: Body Mass vs. Flipper Length",
        subtitle="Sample of Three Penguin Species",
        caption="Data collected by Dr. Kristen Gorman")
 ```
-```{r}
+```{r viewing a variable plot}
 p
 ```
 Once variable is defined it can be annotated in the following way:
 
-```{r}
+```{r add annotations to a variable}
 p+annotate("text",x=220,y=3500,label="The Gentoos are the largest.",
            colour="purple",
            fontface="bold", size=4.5, angle=40)
@@ -198,7 +197,7 @@ p+annotate("text",x=220,y=3500,label="The Gentoos are the largest.",
 
 Facets show different sides of your data by placing each subset on its own plot. Faceting can help you discover new patterns in your data and focus on relationships between different variables.
 
-```{r,warning=FALSE}
+```{r facet_wrap, warning=FALSE}
 ggplot(data=penguins)+
   geom_point(mapping=aes(x=flipper_length_mm, y=body_mass_g, colour=species))+
   facet_wrap(~species)
@@ -208,7 +207,7 @@ Tilde operator is used to define the relationship between dependent variable and
 
 To facet a plot with two variables, use the facet_grid function. This will split the plot into facets vertically by the values of the first variable and horizontally by the values of the second variable.
 
-```{r,warning=FALSE}
+```{r facet_grid, warning=FALSE}
 ggplot(data=penguins)+
   geom_point(mapping=aes(x=flipper_length_mm, y=body_mass_g, colour=species))+
   facet_grid(sex~species)
