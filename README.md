@@ -1,4 +1,3 @@
-# My-notes-on-using-R
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![RStudio Cloud](https://img.shields.io/badge/RStudio-Cloud-blue)
 
