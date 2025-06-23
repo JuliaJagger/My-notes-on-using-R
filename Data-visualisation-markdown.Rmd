@@ -1,12 +1,17 @@
 ---
-title: "Data visualisations Markdown"
+title: "Data Visualisations Markdown"
 author: "Julia Jagger"
 date: "23rd June 2025"
 output:
-  html_document: default
-  word_document: default
-  pdf_document: default
+  html_document:
+    self_contained: true
+    toc: true
+    theme: readable
+knit: (function(input, ...) {
+  rmarkdown::render(input, output_file = "index.html", envir = globalenv())
+})
 ---
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
@@ -35,11 +40,11 @@ h4 {
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com> or alternatively [click here](http://rmarkdown.rstudio.com). Both options do exactly the same thing, but I'm using this .rmd file to keep all my notes in one place! 😊
 
 ## Required packages
-Note that I have turned of the output to the packages as I don't see the value in viewing that part.
+Note that I have turned off the output to the packages as I don't see the value in viewing that part.
 ```{r Load packages, echo=TRUE, results='hide'}
 install.packages("tidyverse")
 library(tidyverse)
-install.packages(("palmerpenguins"))
+install.packages("palmerpenguins")
 library(palmerpenguins)
 ```
 

@@ -1,7 +1,7 @@
 {
     "id": "75006F85",
-    "path": "/cloud/project/Data-visualisation-markdown.Rmd",
-    "project_path": "Data-visualisation-markdown.Rmd",
+    "path": "/cloud/project/index.Rmd",
+    "project_path": "index.Rmd",
     "type": "r_markdown",
     "hash": "0",
     "contents": "",
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "211,78",
-        "scrollLine": "187"
+        "cursorPosition": "2,7",
+        "scrollLine": "0"
     },
     "folds": "",
-    "lastKnownWriteTime": 1750700379,
+    "lastKnownWriteTime": 1750703458,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1750700379007,
+    "last_content_update": 1750703458447,
     "read_only": false,
     "read_only_alternatives": []
 }
